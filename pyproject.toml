@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "imhak-87t"
+version = "0.1.0"
+description = ""
+authors = ["beom-yun <scds0326@naver.com>"]
+readme = "README.md"
+packages = [{include = "imhak_87t"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+black = "^23.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
