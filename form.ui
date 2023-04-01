@@ -54,9 +54,6 @@
            <height>60</height>
           </size>
          </property>
-         <property name="pixmap">
-          <pixmap>logo.gif</pixmap>
-         </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>

@@ -1,11 +1,24 @@
+import os
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5 import uic
 from pdr import PDR
 from matplotlib.backends.backend_qt5agg import FigureCanvas as FigureCanvas
 from matplotlib.figure import Figure
 
-form_class = uic.loadUiType("form.ui")[0]
+########################################
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller"""
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
+form = resource_path("form.ui")
+form_class = uic.loadUiType(form)[0]
+########################################
+
+# form_class = uic.loadUiType("form.ui")[0]
 
 
 class MainWidget(QWidget, form_class):
@@ -15,10 +28,46 @@ class MainWidget(QWidget, form_class):
         self.btn_cal.clicked.connect(self.btn_cal_clicked)
         self.pdr = PDR()
 
+        icon = resource_path("icon.ico")
+        self.setWindowIcon(QIcon(icon))
+        logo = resource_path("logo.gif")
+        self.lbl_logo.setPixmap(QPixmap(logo))
+
+        self.radio_2.clicked.connect(self.radio_clicked)
+        self.radio_3.clicked.connect(self.radio_clicked)
+
         self.canvas = FigureCanvas(Figure(figsize=(555, 555)))
         self.formLayout.addWidget(self.canvas)
         ax = self.canvas.figure.subplots()
         ax.set_title("87T Operation Area")
+
+    def radio_clicked(self):
+        if self.radio_2.isChecked():
+            self.edit_v_3.setValue(0)
+            self.edit_v_3.setEnabled(False)
+            self.edit_ct_ratio_3.setValue(0)
+            self.edit_ct_ratio_3.setEnabled(False)
+            self.edit_factor_3.setValue(0)
+            self.edit_factor_3.setEnabled(False)
+            self.edit_i_3_r.setValue(0)
+            self.edit_i_3_r.setEnabled(False)
+            self.edit_i_3_s.setValue(0)
+            self.edit_i_3_s.setEnabled(False)
+            self.edit_i_3_t.setValue(0)
+            self.edit_i_3_t.setEnabled(False)
+        elif self.radio_3.isChecked():
+            self.edit_v_3.setValue(600)
+            self.edit_v_3.setEnabled(True)
+            self.edit_ct_ratio_3.setValue(5000)
+            self.edit_ct_ratio_3.setEnabled(True)
+            self.edit_factor_3.setValue(0)
+            self.edit_factor_3.setEnabled(True)
+            self.edit_i_3_r.setValue(0)
+            self.edit_i_3_r.setEnabled(True)
+            self.edit_i_3_s.setValue(0)
+            self.edit_i_3_s.setEnabled(True)
+            self.edit_i_3_t.setValue(0)
+            self.edit_i_3_t.setEnabled(True)
 
     def btn_cal_clicked(self):
         # PDR 리셋

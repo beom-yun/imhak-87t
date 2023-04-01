@@ -166,25 +166,3 @@ class PDR:
                 # )
                 return "동작", "한시(87R)"
         return "미동작", "-"
-
-
-# pdr = PDR()
-# pdr.cal_crossing_points()
-# pdr.set_pdr(
-#     v_1=22900,
-#     v_2=600,
-#     v_3=600,
-#     ct_ratio_1=200,
-#     ct_ratio_2=5000,
-#     ct_ratio_3=5000,
-#     i_n=5,
-#     i_low=0.2,
-#     i_high=10,
-#     knee_point=1.5,
-#     slope_1=0.41,
-#     slope_2=0.7,
-#     factor_1=1,
-#     factor_2=0.66,
-#     factor_3=0.66,
-# )
-# print(pdr.get_pdr())
