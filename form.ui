@@ -1128,6 +1128,328 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>radio_2</tabstop>
+  <tabstop>radio_3</tabstop>
+  <tabstop>edit_v_1</tabstop>
+  <tabstop>edit_v_2</tabstop>
+  <tabstop>edit_v_3</tabstop>
+  <tabstop>edit_ct_ratio_1</tabstop>
+  <tabstop>edit_ct_ratio_2</tabstop>
+  <tabstop>edit_ct_ratio_3</tabstop>
+  <tabstop>edit_i_n</tabstop>
+  <tabstop>edit_i_low</tabstop>
+  <tabstop>edit_slope_1</tabstop>
+  <tabstop>edit_slope_2</tabstop>
+  <tabstop>edit_knee_point</tabstop>
+  <tabstop>edit_i_high</tabstop>
+  <tabstop>edit_factor_1</tabstop>
+  <tabstop>edit_factor_2</tabstop>
+  <tabstop>edit_factor_3</tabstop>
+  <tabstop>edit_i_1_r</tabstop>
+  <tabstop>edit_i_1_s</tabstop>
+  <tabstop>edit_i_1_t</tabstop>
+  <tabstop>edit_i_2_r</tabstop>
+  <tabstop>edit_i_2_s</tabstop>
+  <tabstop>edit_i_2_t</tabstop>
+  <tabstop>edit_i_3_r</tabstop>
+  <tabstop>edit_i_3_s</tabstop>
+  <tabstop>edit_i_3_t</tabstop>
+  <tabstop>edit_i_d</tabstop>
+  <tabstop>edit_i_r</tabstop>
+  <tabstop>edit_result_1</tabstop>
+  <tabstop>edit_result_2</tabstop>
+  <tabstop>btn_cal</tabstop>
+ </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>edit_i_1_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>145</x>
+     <y>603</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>634</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_1_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>612</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>163</x>
+     <y>667</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_1_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>117</x>
+     <y>634</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>611</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_1_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>175</x>
+     <y>636</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>176</x>
+     <y>662</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_1_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>152</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>151</x>
+     <y>613</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_1_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_1_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>180</x>
+     <y>659</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>173</x>
+     <y>638</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>253</x>
+     <y>608</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>251</x>
+     <y>629</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>605</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>259</x>
+     <y>662</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>277</x>
+     <y>629</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>610</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>639</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>279</x>
+     <y>663</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>295</x>
+     <y>660</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>608</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_2_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_2_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>314</x>
+     <y>661</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>634</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>389</x>
+     <y>608</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>636</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_r</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>398</x>
+     <y>607</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>666</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_t</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>421</x>
+     <y>637</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>663</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_s</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>429</x>
+     <y>630</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>428</x>
+     <y>606</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_r</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>440</x>
+     <y>656</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>440</x>
+     <y>605</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_i_3_t</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>edit_i_3_s</receiver>
+   <slot>setValue(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>444</x>
+     <y>633</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
