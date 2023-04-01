@@ -2,7 +2,8 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from pdr import PDR
-from drawGraph import draw_graph
+from matplotlib.backends.backend_qt5agg import FigureCanvas as FigureCanvas
+from matplotlib.figure import Figure
 
 form_class = uic.loadUiType("form.ui")[0]
 
@@ -13,6 +14,11 @@ class MainWidget(QWidget, form_class):
         self.setupUi(self)
         self.btn_cal.clicked.connect(self.btn_cal_clicked)
         self.pdr = PDR()
+
+        self.canvas = FigureCanvas(Figure(figsize=(555, 555)))
+        self.formLayout.addWidget(self.canvas)
+        ax = self.canvas.figure.subplots()
+        ax.set_title("87T Operation Area")
 
     def btn_cal_clicked(self):
         # PDR 리셋
@@ -40,7 +46,7 @@ class MainWidget(QWidget, form_class):
 
         # 그래프 그리기
         settings = self.pdr.get_pdr()
-        draw_graph(settings)
+        self.draw_graph(settings)
 
     def get_settings(self):
         if self.radio_2.isChecked():
@@ -83,7 +89,66 @@ class MainWidget(QWidget, form_class):
         }
 
     def draw_graph(self, settings):
-        pass
+        self.canvas.figure.clf()
+        ax = self.canvas.figure.subplots()
+        point1 = (0, settings["i_low"])
+        point2 = settings["cross_1"]
+        point3 = settings["cross_2"]
+        point4 = settings["cross_3"]
+        x = [point1[0], point2[0], point3[0], point4[0]]
+        y = [point1[1], point2[1], point3[1], point4[1]]
+
+        ax.plot(
+            [0, point4[0] + settings["i_high"] / 2],
+            [settings["i_high"], settings["i_high"]],
+            color="gold",
+            linestyle="dotted",
+            label="87INST",
+        )
+        ax.fill_betweenx(
+            [point4[1], point4[1] + settings["i_high"] / 2],
+            [point4[0] + settings["i_high"] / 2, point4[0] + settings["i_high"] / 2],
+            color="gold",
+            alpha=0.1,
+            label="87INST Oper.",
+        )
+        ax.plot(
+            x,
+            y,
+            color="plum",
+            linestyle="dotted",
+            marker=".",
+            label="87R",
+        )
+        ax.fill_betweenx(
+            y[:4],
+            x[:4],
+            color="plum",
+            alpha=0.1,
+            label="87R Oper.",
+        )
+        ax.plot(
+            [settings["i_r"]],
+            [settings["i_d"]],
+            color="red",
+            marker="x",
+        )
+        ax.text(
+            settings["i_r"] + 0.1,
+            settings["i_d"] + 0.1,
+            "("
+            + str(round(settings["i_r"], 2))
+            + ", "
+            + str(round(settings["i_d"], 2))
+            + ")",
+        )
+        ax.set_xlabel("Ir", loc="right")
+        ax.set_ylabel("Id", loc="top")
+        ax.set_xlim([0, point4[0] + settings["i_high"] / 2])
+        ax.set_ylim([0, point4[1] + settings["i_high"] / 2])
+        ax.legend(loc="lower right")
+        ax.set_title("87T Operation Area")
+        self.canvas.draw()
 
 
 if __name__ == "__main__":

@@ -44,21 +44,18 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>200</width>
-           <height>50</height>
+           <width>240</width>
+           <height>60</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
-           <height>50</height>
+           <width>240</width>
+           <height>60</height>
           </size>
          </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string>인천교통공사</string>
+         <property name="pixmap">
+          <pixmap>logo.gif</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -81,7 +78,11 @@
        <item>
         <widget class="QLabel" name="label_37">
          <property name="text">
-          <string>전기관리팀 시스템진단반 제작</string>
+          <string>기술사업소 전기관리팀
+시스템진단반('23.04)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
@@ -434,6 +435,9 @@
                  <widget class="QDoubleSpinBox" name="edit_i_high">
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="minimum">
+                   <double>2.000000000000000</double>
                   </property>
                   <property name="maximum">
                    <double>100.000000000000000</double>
@@ -1087,39 +1091,18 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>계산하기</string>
+             <string>계산하기
+(Ctrl+Enter)</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+Return</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QLabel" name="lbl_graph">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>555</width>
-            <height>555</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>그래프</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
+         <layout class="QFormLayout" name="formLayout"/>
         </item>
        </layout>
       </item>
