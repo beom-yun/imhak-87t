@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from pdr import PDR
+from drawGraph import draw_graph
 
 form_class = uic.loadUiType("form.ui")[0]
 
@@ -31,7 +32,6 @@ class MainWidget(QWidget, form_class):
         self.pdr.cal_i_d_and_i_r()
         self.edit_i_d.setValue(self.pdr.i_d)
         self.edit_i_r.setValue(self.pdr.i_r)
-        print(self.pdr.get_pdr())
 
         # 동작여부, 동작요소 계산하기
         pickup_result = self.pdr.cal_pickup()
@@ -39,7 +39,8 @@ class MainWidget(QWidget, form_class):
         self.edit_result_2.setText(pickup_result[1])
 
         # 그래프 그리기
-        self.draw_graph(settings)
+        settings = self.pdr.get_pdr()
+        draw_graph(settings)
 
     def get_settings(self):
         if self.radio_2.isChecked():
