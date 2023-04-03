@@ -7,6 +7,7 @@ from pdr import PDR
 from matplotlib.backends.backend_qt5agg import FigureCanvas as FigureCanvas
 from matplotlib.figure import Figure
 
+
 ########################################
 def resource_path(relative_path):
     """Get absolute path to resource, works for dev and for PyInstaller"""
