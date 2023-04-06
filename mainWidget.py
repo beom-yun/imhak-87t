@@ -20,6 +20,8 @@ form = resource_path("form.ui")  # Main Widget
 form_class = uic.loadUiType(form)[0]
 dialog_expl = resource_path("dialog_expl.ui")  # 사용 설명 Dialog
 dialog_expl_class = uic.loadUiType(dialog_expl)[0]
+dialog_system = resource_path("dialog_system.ui")
+dialog_system_class = uic.loadUiType(dialog_system)[0]
 ########################################
 
 
@@ -153,6 +155,17 @@ class MainWidget(QWidget, form_class):
 
 
 class ExplDialog(QDialog, dialog_expl_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.btn_system.clicked.connect(self.btn_system_clicked)
+
+    def btn_system_clicked(self):
+        dialog_system = SystemDialog()
+        dialog_system.exec_()
+
+
+class SystemDialog(QDialog, dialog_system_class):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
