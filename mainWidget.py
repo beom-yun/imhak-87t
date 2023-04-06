@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5 import uic
 from pdr import PDR
+from drawGraph import draw_graph
 from matplotlib.backends.backend_qt5agg import FigureCanvas as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -15,11 +16,11 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-form = resource_path("form.ui")
+form = resource_path("form.ui")  # Main Widget
 form_class = uic.loadUiType(form)[0]
+dialog_expl = resource_path("dialog_expl.ui")  # 사용 설명 Dialog
+dialog_expl_class = uic.loadUiType(dialog_expl)[0]
 ########################################
-
-# form_class = uic.loadUiType("form.ui")[0]
 
 
 class MainWidget(QWidget, form_class):
@@ -34,13 +35,25 @@ class MainWidget(QWidget, form_class):
         logo = resource_path("logo.gif")
         self.lbl_logo.setPixmap(QPixmap(logo))
 
+        self.btn_expl.clicked.connect(self.btn_expl_clicked)
         self.radio_2.clicked.connect(self.radio_clicked)
         self.radio_3.clicked.connect(self.radio_clicked)
 
         self.canvas = FigureCanvas(Figure(figsize=(555, 555)))
         self.formLayout.addWidget(self.canvas)
+        self.canvas.mpl_connect("button_press_event", self.canvas_clicked)
         ax = self.canvas.figure.subplots()
         ax.set_title("87T Operation Area")
+
+    def canvas_clicked(self, args):
+        if args.dblclick:
+            settings = self.pdr.get_pdr()
+            if settings["winding"]:
+                draw_graph(settings, self.canvas, True)
+
+    def btn_expl_clicked(self):
+        dialog = ExplDialog()
+        dialog.exec_()
 
     def radio_clicked(self):
         if self.radio_2.isChecked():
@@ -96,7 +109,7 @@ class MainWidget(QWidget, form_class):
 
         # 그래프 그리기
         settings = self.pdr.get_pdr()
-        self.draw_graph(settings)
+        draw_graph(settings, self.canvas, False)
 
     def get_settings(self):
         if self.radio_2.isChecked():
@@ -138,67 +151,11 @@ class MainWidget(QWidget, form_class):
             "i_3": i_3,
         }
 
-    def draw_graph(self, settings):
-        self.canvas.figure.clf()
-        ax = self.canvas.figure.subplots()
-        point1 = (0, settings["i_low"])
-        point2 = settings["cross_1"]
-        point3 = settings["cross_2"]
-        point4 = settings["cross_3"]
-        x = [point1[0], point2[0], point3[0], point4[0]]
-        y = [point1[1], point2[1], point3[1], point4[1]]
 
-        ax.plot(
-            [0, point4[0] + settings["i_high"] / 2],
-            [settings["i_high"], settings["i_high"]],
-            color="gold",
-            linestyle="dotted",
-            label="87INST",
-        )
-        ax.fill_betweenx(
-            [point4[1], point4[1] + settings["i_high"] / 2],
-            [point4[0] + settings["i_high"] / 2, point4[0] + settings["i_high"] / 2],
-            color="gold",
-            alpha=0.1,
-            label="87INST Oper.",
-        )
-        ax.plot(
-            x,
-            y,
-            color="plum",
-            linestyle="dotted",
-            marker=".",
-            label="87R",
-        )
-        ax.fill_betweenx(
-            y[:4],
-            x[:4],
-            color="plum",
-            alpha=0.1,
-            label="87R Oper.",
-        )
-        ax.plot(
-            [settings["i_r"]],
-            [settings["i_d"]],
-            color="red",
-            marker="x",
-        )
-        ax.text(
-            settings["i_r"] + 0.1,
-            settings["i_d"] + 0.1,
-            "("
-            + str(round(settings["i_r"], 2))
-            + ", "
-            + str(round(settings["i_d"], 2))
-            + ")",
-        )
-        ax.set_xlabel("Ir", loc="right")
-        ax.set_ylabel("Id", loc="top")
-        ax.set_xlim([0, point4[0] + settings["i_high"] / 2])
-        ax.set_ylim([0, point4[1] + settings["i_high"] / 2])
-        ax.legend(loc="lower right")
-        ax.set_title("87T Operation Area")
-        self.canvas.draw()
+class ExplDialog(QDialog, dialog_expl_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
 
 
 if __name__ == "__main__":
